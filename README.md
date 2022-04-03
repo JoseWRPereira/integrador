@@ -1,5 +1,7 @@
 # Project: Integrator
 
+Hospedagem (Heroku): https://integrado.herokuapp.com/
+
 # Workflow
 
 ```python
@@ -11,6 +13,9 @@ source env/bin/activate
 
 ## Install flask
 pip3 install flask
+
+## Install servidor HTTP Python Web Server Gateway Interface
+pip3 install gunicorn
 
 ## Get requirements
 pip3 freeze > requirements.txt
