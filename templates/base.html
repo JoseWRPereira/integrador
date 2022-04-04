@@ -7,10 +7,28 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <header></header>
+        <header>
+            <ul id="menu"> 
+                <li><a class="active" href="#">Agendei</a></li>
+                <li><a class="deactive" href="#">Reservas</a></li>
+                <li><a class="deactive" href="#">Agendar</a></li>
+                <li><a class="deactive" href="#">Excluir</a></li>
+                <li><a class="deactive" href="#">Usuários</a></li>
+                <li><a class="deactive" href="#">Carrinhos</a></li>
+                <li><a class="deactive" href="#">Agendamentos</a></li>
+                <lir>
+                    <li><a class="deactive" href="/login">Conecte-se</a></li>
+                </lir>
+            </ul>
+        </header>
         <body>
             {% block content%} {% endblock %}
         </body>
-        <footer></footer>
+        <footer>
+            <ul>
+                <li><a href="github.com/JoseWRPereira" target="_blank">GitHub</a></li>
+                <li><a href="gitlab.com/JoseWRPereira" target="_blank">GitHub</a></li>
+            </ul>
+        </footer>
     </body>
 </html>
