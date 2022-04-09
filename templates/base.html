@@ -7,52 +7,32 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <header>
-            <!-- <h1>Integrador</h1> -->
-          
-        <nav class="menus2">
-            <ul class="menus">
-                <li class="menulogo"><a href="/">Integrador</a></li>
-                <li class="menusup"><a href="#">Home</a></li>
-                <li class="menusup"><a href="#">Our team</a></li>
-                <li class="menusup"><a href="#">Projects</a></li>
-                <li class="menusup"><a href="#">Contact</a></li>
-                <li class="busca">
-                    <form >
-                        <input type="search" name="q" placeholder="Search query">
-                        <input type="submit" value="Go!">
-                    </form>
-                </li>
-    
+        <header id="header-msg">
+            <div>
+                <h2>Scroll Down</h2>
+                <p>Scroll down to see the sticky effect.</p>
+            </div>
+        </header>
+        <nav id="menu-h">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Quem somos</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Entrar</a></li>
             </ul>
         </nav>
-    </header>
-
-
-        <!-- <header>
-            <ul id="menu"> 
-                <li><a class="active" href="#">Agendei</a></li>
-                <li><a class="deactive" href="#">Reservas</a></li>
-                <li><a class="deactive" href="#">Agendar</a></li>
-                <li><a class="deactive" href="#">Excluir</a></li>
-                <li><a class="deactive" href="#">Usuários</a></li>
-                <li><a class="deactive" href="#">Carrinhos</a></li>
-                <li><a class="deactive" href="#">Agendamentos</a></li>
-                <lir>
-                    <li><a class="deactive" href="/login">Conecte-se</a></li>
-                </lir>
-            </ul>
-        </header> -->
         <body>
             {% block content%} {% endblock %}
         </body>
         <footer>
-            <!-- <ul>
-                <li><a href="github.com/JoseWRPereira" target="_blank">GitHub</a></li>
-                <li><a href="gitlab.com/JoseWRPereira" target="_blank">GitLab</a></li>
-                <li><img src="notebook.png"></li>
-            </ul> -->
-            <p>©Copyleft 2050 by jwrp. All rights reversed.</p>
+            <nav id="social-media">
+                <ul>
+                    <li><a href="">Twitter</a></li>
+                    <li><a href="">LinkedIn</a></li>
+                    <li><a href="">GitHub</a></li>
+                </ul>
+            </nav>
         </footer>
     </body>
 </html>
