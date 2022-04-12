@@ -42,26 +42,27 @@ h3
   font-size: 140%;
 }
 
-#header-msg
+
+.header-msg
 {
   text-align: center;
   padding: 20px;
   background-color: var(--cor11);
 }
-#header-msg p
+.header-msg p
 {
   font-size: 20px;
 }
 
-#menu-h
+
+
+.menu-h
 {
   position: sticky;
   top: 0px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
-#menu-h ul
+.menu-h ul
 {
   list-style: none;
   padding: 0;
@@ -69,26 +70,22 @@ h3
   position: sticky;
   top: 0;
 }
-
-#menu-h ul li
+.menu-h ul li
 {
   display: inline;
 }
-
-#menu-h ul li a
+.menu-h ul li a
 {
   color: var(--cor1);
   padding: 20px;
   display: inline-block;
   text-decoration: none;
 }
-
-#menu-h ul li a:hover
+.menu-h ul li a:hover
 {
   background-color: var(--cor0)
 }
-
-#menu-h ul li:last-child a
+.menu-h ul li:last-child a
 {
   float: right;
   background-color: var(--cor3);
