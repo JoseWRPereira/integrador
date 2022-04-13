@@ -56,12 +56,49 @@ h3
 
 
 
+
+
+
 .menu-h
 {
   position: sticky;
   top: 0px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  align-items: center;
+  background-color: var(--cor10);
 }
+
+ .menu-h .menu-start
+ {
+   display: flex;
+   align-self: initial;
+   margin-left: 1px;
+   margin-right: 10px;
+  float: left;
+   padding: 10px;
+ }
+
+ .menu-h .menu-center
+{
+  display: flex;
+  margin-left: 0px;
+}
+ .menu-h .menu-end
+ {
+   display: flex;
+   margin-right: 1px;
+   padding: 10px;
+ }
+  
+.menu-h 
+.menu-start:hover,
+.menu-end:hover
+{
+  background-color: var(--cor0);
+}
+
+
 .menu-h ul
 {
   list-style: none;
@@ -80,20 +117,17 @@ h3
   padding: 20px;
   display: inline-block;
   text-decoration: none;
+
 }
+
 .menu-h ul li a:hover
 {
-  background-color: var(--cor0)
-}
-.menu-h ul li:last-child a
-{
-  float: right;
-  background-color: var(--cor3);
+  background-color: var(--cor0);
 }
 
 
 
-.footer-separator
+.separator
 {
   background-color: var(--cor3);
   height: 5px;
@@ -137,7 +171,15 @@ svg
   width: 42px;
   height: 42px;
 }
+
+.svg-nav-fill
+{
+  fill: var(--cor1);
+}
+
 .svg-footer-fill:hover
 {
   fill: var(--cor3);
 }
+
+
