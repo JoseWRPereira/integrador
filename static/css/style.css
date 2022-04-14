@@ -135,6 +135,39 @@ h3
 
 
 
+.container
+{
+  /* position: relative; */
+  /* width: 100%; */
+  display: block;  
+}
+.container body
+{
+}
+
+.w3-sidebar
+{
+  position: fixed;
+  width: 200px; /* Largura do painel a esquerda ORG=300px*/
+  height: 100%;
+  background: var(--cor10);
+  border-left: 10px solid var(--cor10); /* Coloca uma borda a esquerda*/
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation
+{
+  height: 100%;
+  width: 200px;
+  background-color: #fff;
+  position: fixed!important;
+  z-index: 1;
+  overflow: auto;
+}
+
+
+
+
 .social-media
 {
   display: flex;
