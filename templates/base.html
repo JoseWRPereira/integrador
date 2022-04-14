@@ -27,27 +27,27 @@
                     <li>
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" placeholder="Procurar">
-                        <!-- <span class="tooltip">Dashboard</span> -->
+                        <span class="tooltip">Procurar</span>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-table-cells-large"></i>                            <span class="links_name">Dashboard</span>
                         </a>
-                        <!-- <span class="tooltip">Dashboard</span> -->
+                        <span class="tooltip">Dashboard</span>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-cart-flatbed"></i>
                             <span class="links_name">Carrinhos</span>
                         </a>
-                        <!-- <span class="tooltip">Dashboard</span> -->
+                        <span class="tooltip">Carrinhos</span>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span class="links_name">Sair</span>
                         </a>
-                        <!-- <span class="tooltip">Dashboard</span> -->
+                        <span class="tooltip">Sair</span>
                     </li>
                 </ul>
                 <div class="profile_content">
@@ -66,7 +66,20 @@
             <div class="home_content">
                 <div class="text">Home content</div>
             </div>
+            <script>
+                let btn = document.querySelector("#btn");
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn = document.querySelector(".fa-magnifying-glass");
 
+                btn.onclick = function()
+                {
+                    sidebar.classList.toggle("active");
+                }
+                searchBtn.onclick = function()
+                {
+                    sidebar.classList.toggle("active");
+                }
+            </script>
         </body>
 
         <footer>
