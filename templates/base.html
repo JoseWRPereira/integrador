@@ -11,9 +11,6 @@
         <header>
 
         </header>
-        <!-- <body>
-            {% block content%} {% endblock %}
-        </body> -->
         <body>
             <div class="sidebar">
                 <div class="logo_content">
@@ -64,7 +61,8 @@
                 </div>
             </div>
             <div class="home_content">
-                <div class="text">Home content</div>
+                <!-- <div class="text">Home content</div> -->
+                {% block content%} {% endblock %}
             </div>
             <script>
                 let btn = document.querySelector("#btn");
