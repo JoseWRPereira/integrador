@@ -36,3 +36,24 @@ flask run
 ## Exit the virtual environment
 deactivate
 ```
+
+
+## Deploy using Heroku Git
+
+``` bash
+## Login
+$ heroku login
+
+## Clone the repository
+$ heroku git:clone -a integrado 
+$ cd integrado
+
+## Deploy changes
+$ git add .
+$ git commit -am "comment..."
+$ git push heroku main
+```
+
+## Validate
+
+Tool for check the html markup language: [W3C Markup Validation Service](https://validator.w3.org/)
