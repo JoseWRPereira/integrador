@@ -36,3 +36,20 @@ flask run
 ## Exit the virtual environment
 deactivate
 ```
+
+
+## Deploy using Heroku Git
+
+``` bash
+## Login
+$ heroku login
+
+## Clone the repository
+$ heroku git:clone -a integrado 
+$ cd integrado
+
+## Deploy changes
+$ git add .
+$ git commit -am "comment..."
+$ git push heroku main
+```

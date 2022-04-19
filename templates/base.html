@@ -8,80 +8,70 @@
         <script src="https://kit.fontawesome.com/22e5ea0d80.js" crossorigin="anonymous"></script>    
     </head>
     <body>
-        <header>
-
-        </header>
-        <body>
-            <div class="sidebar">
-                <div class="logo_content">
-                    <div class="logo">
-                        <i class="fa-solid fa-rocket"></i>
-                        <div class="logo_name">Integrador</div>
-                    </div>
-                    <i class="fa-solid fa-bars" id="btn"></i>
+        <div class="sidebar">
+            <div class="logo_content">
+                <div class="logo">
+                    <i class="fa-solid fa-rocket"></i>
+                    <div class="logo_name">Integrador</div>
                 </div>
-                <ul class="nav_list">
-                    <li>
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Procurar">
-                        <span class="tooltip">Procurar</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-table-cells-large"></i>                            <span class="links_name">Dashboard</span>
-                        </a>
-                        <span class="tooltip">Dashboard</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-cart-flatbed"></i>
-                            <span class="links_name">Carrinhos</span>
-                        </a>
-                        <span class="tooltip">Carrinhos</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span class="links_name">Sair</span>
-                        </a>
-                        <span class="tooltip">Sair</span>
-                    </li>
-                </ul>
-                <div class="profile_content">
-                    <div class="profile">
-                        <div class="profile_details">
-                            <img src="/static/images/tux.jpg" alt="Tux">
-                            <div class="name_job">
-                                <div class="name"> José da Silva </div>
-                                <div class="job"> Professor </div>
-                            </div>
+                <i class="fa-solid fa-bars" id="btn"></i>
+            </div>
+            <ul class="nav_list">
+                <li>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Procurar">
+                    <span class="tooltip">Procurar</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-table-cells-large"></i>                            <span class="links_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-cart-flatbed"></i>
+                        <span class="links_name">Carrinhos</span>
+                    </a>
+                    <span class="tooltip">Carrinhos</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="links_name">Sair</span>
+                    </a>
+                    <span class="tooltip">Sair</span>
+                </li>
+            </ul>
+            <div class="profile_content">
+                <div class="profile">
+                    <div class="profile_details">
+                        <img src="/static/images/tux.jpg" alt="Tux">
+                        <div class="name_job">
+                            <div class="name"> José da Silva </div>
+                            <div class="job"> Professor </div>
                         </div>
-                        <i class="fa-solid fa-right-from-bracket" id="logout"></i>
                     </div>
+                    <i class="fa-solid fa-right-from-bracket" id="logout"></i>
                 </div>
             </div>
-            <div class="home_content">
-                <!-- <div class="text">Home content</div> -->
-                {% block content%} {% endblock %}
-            </div>
-            <script>
-                let btn = document.querySelector("#btn");
-                let sidebar = document.querySelector(".sidebar");
-                let searchBtn = document.querySelector(".fa-magnifying-glass");
+        </div>
+        <div class="home_content">
+            {% block content%} {% endblock %}
+        </div>
+        <script>
+            let btn = document.querySelector("#btn");
+            let sidebar = document.querySelector(".sidebar");
+            let searchBtn = document.querySelector(".fa-magnifying-glass");
 
-                btn.onclick = function()
-                {
-                    sidebar.classList.toggle("active");
-                }
-                searchBtn.onclick = function()
-                {
-                    sidebar.classList.toggle("active");
-                }
-            </script>
-        </body>
-
-        <footer>
-
-        </footer>
+            btn.onclick = function()
+            {
+                sidebar.classList.toggle("active");
+            }
+            searchBtn.onclick = function()
+            {
+                sidebar.classList.toggle("active");
+            }
+        </script>
     </body>
 </html>
