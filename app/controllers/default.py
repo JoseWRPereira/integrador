@@ -1,11 +1,10 @@
-from crypt import methods
-from flask import Flask, redirect, request
+from flask import redirect, request
 from flask import render_template
 from flask import url_for
 from flask import flash
+from app import app
 
-app = Flask(__name__)
-app.secret_key = 'dont tell anyone'
+
 
 @app.route("/")
 def index():
@@ -40,7 +39,3 @@ def newuser():
             return redirect( url_for('newuser'))
     else:
         return render_template('newuser.html')
-
-
-if __name__=='__main__':
-    app.run()
