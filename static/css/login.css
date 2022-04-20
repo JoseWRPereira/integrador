@@ -1,0 +1,28 @@
+@import "/static/css/style.css";
+
+form
+{
+    width: 500px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+form input
+{
+    display: block;
+    margin: 10px auto;
+    width: 500px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+form p
+{
+    padding: 10px;
+    border: 1px solid var(--cor4);
+    background: var(--cor14);
+    color: var(--cor4);
+    border-radius: 10px;
+}

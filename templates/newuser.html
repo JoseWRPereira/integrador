@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h3>Novo usuário</h3>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <input type="text" placeholder="Nome completo" name="nome">
+    <input type="email" placeholder="usuario@email.com" name="email">
+    <input type="password" placeholder="Senha" name="passwd">
+    <input type="password" placeholder="Confirmar senha" name="confirm">
+    <input type="submit" value="Criar" name="newuser_btn">
+</form>
+
+
+<script src="/static/js/newuser.js"></script>
+{% endblock %}

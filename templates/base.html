@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
         <title>{% block title %}{% endblock %}</title>
         <script src="https://kit.fontawesome.com/22e5ea0d80.js" crossorigin="anonymous"></script>    
     </head>
@@ -23,7 +25,7 @@
                     <span class="tooltip">Procurar</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/">
                         <i class="fa-solid fa-table-cells-large"></i>                            <span class="links_name">Dashboard</span>
                     </a>
                     <span class="tooltip">Dashboard</span>
@@ -36,7 +38,7 @@
                     <span class="tooltip">Carrinhos</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/login">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Sair</span>
                     </a>
@@ -59,19 +61,6 @@
         <div class="home_content">
             {% block content%} {% endblock %}
         </div>
-        <script>
-            let btn = document.querySelector("#btn");
-            let sidebar = document.querySelector(".sidebar");
-            let searchBtn = document.querySelector(".fa-magnifying-glass");
-
-            btn.onclick = function()
-            {
-                sidebar.classList.toggle("active");
-            }
-            searchBtn.onclick = function()
-            {
-                sidebar.classList.toggle("active");
-            }
-        </script>
+        <script src="/static/js/dashboard.js"></script>
     </body>
 </html>
