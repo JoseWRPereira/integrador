@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<form method="POST">
+<form action="" method="POST">
     <h3>Login</h3>
 
     {% with messages = get_flashed_messages() %}
@@ -16,10 +16,18 @@
         {% endif %}
     {% endwith %}
     
-    <input type="email" placeholder="usuario@email.com" id="usuario" name="usuario" >
+    <!-- <input type="email" placeholder="usuario@email.com" id="usuario" name="usuario" >
     <input type="password" placeholder="Senha" id="senha" name="senha">
     <input type="submit" value="Enviar" id="pwd_btn">
+    <h5><a href="/newuser">Create an account</a></h5> -->
+
+    {{ form_login.csrf_token }}
+    {{ form_login.username( placeholder="usuario@email.com", maxlength="50" ) }}
+    {{ form_login.password( placeholder="Senha", maxlength="10") }}
+    <input type="submit" value="Enviar" id="pwd_btn">
     <h5><a href="/newuser">Create an account</a></h5>
+
+
 </form>
 
 
