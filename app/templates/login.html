@@ -22,10 +22,10 @@
     <h5><a href="/newuser">Create an account</a></h5> -->
 
     {{ form_login.csrf_token }}
-    {{ form_login.username( placeholder="usuario@email.com", maxlength="50" ) }}
+    {{ form_login.email( placeholder="usuario@email.com", maxlength="50" ) }}
     {{ form_login.password( placeholder="Senha", maxlength="10") }}
     <input type="submit" value="Enviar" id="pwd_btn">
-    <h5><a href="/newuser">Create an account</a></h5>
+    <h5><a href="/newuser">Criar uma conta</a></h5>
 
 
 </form>

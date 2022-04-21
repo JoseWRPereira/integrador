@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Usuários {% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    <h3>Usuários</h3>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}  
+    <table border="1">
+        {% for u in users %}
+        <tr>
+            <td> {{ u[0] }} </td>
+            <td> {{ u[1] }} </td>
+            <td> {{ u[2] }} </td>
+            <td> {{ u[3] }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+
+{% endblock %}

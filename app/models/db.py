@@ -5,20 +5,16 @@ from psycopg2 import Error
 class DBConn():
     def __init__(self):
         self.host = '127.0.0.1'
-        self.database = ''
+        self.database = 'db_integrador'
         self.user = 'postgres'
         self.port = '5432'
         self.password = 'postgres'
-        self.uri = "postgresql://postgres:postgres@localhost:5432/"
+        self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
     
     def credential_defaul(self, dbname):
         self.database = dbname
-        self.uri = "postgresql://"+\
-                    self.user+":"+\
-                    self.password+"@"+\
-                    self.host+":"+\
-                    self.port+"/"+\
-                    dbname
+        # self.uri = "postgresql://"+self.user+":"+self.password+"@"+self.host+":"+self.port+"/"+self.database
+        self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
 
     def credential(self, host, dbname, user, port, passwd):
         self.host = host
