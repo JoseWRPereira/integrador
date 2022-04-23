@@ -199,15 +199,15 @@
 
 .sidebar.active .profile_content .profile
 {
-    background: none;
-    background: var(--cor20);
+    /* background: none; */
+    /* background: var(--cor20); */
 }
 
 .profile_content .profile .profile_details
 {
     display: flex;
     align-items: center;
-    opacity: 0;
+    /* opacity: 0; */
     pointer-events: none;
     white-space: nowrap;
 }
@@ -220,15 +220,22 @@
 
 .profile .profile_details img
 {
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 25%;
+}
+.profile.active .profile_details img
+{
+    height: 50px;
+    width: 50px;
     object-fit: cover;
     border-radius: 25%;
 }
 
 .profile .profile_details .name_job
 {
-    margin-left: 10px;
+    margin-left: 21px;
 }
 
 .profile .profile_details .name
@@ -257,7 +264,7 @@
     background: var(--cor20);
 }
 
-.sidebar.active .profile #logout
+/* .sidebar.active .profile #logout
 {
     left: 70%;
     transition: all 0.5s ease;
@@ -266,7 +273,7 @@
 .sidebar.active .profile #logout
 {
     background: none;
-}
+} */
 .home_content
 {
     position: absolute;

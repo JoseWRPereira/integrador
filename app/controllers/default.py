@@ -1,11 +1,13 @@
-from flask import redirect, request
+from crypt import methods
+from flask import redirect
 from flask import render_template
 from flask import url_for
-from flask import flash
+from flask import flash, session
 from app import app
 from app.models.forms import LoginForm, NewUserForm, User
 from app.models.db import DBConn
 from app.models.forms import User
+
 
 db = DBConn()
 usr = User()
@@ -24,8 +26,16 @@ def login():
             flash('{}'.format(form_login.errors),'alert')
         else:
             if usr.login_validate(form_login.email.data, form_login.password.data):
-                return render_template("index.html")
+                return render_template('index.html')
     return render_template('login.html', form_login=form_login)
+
+
+@app.route("/logoff", methods=['GET'])
+def logoff():
+    session.pop('username', None)
+    session.pop('email', None)
+    session.pop('id', None)
+    return redirect(url_for('login'))
 
 
 @app.route("/newuser", methods=['GET','POST'])

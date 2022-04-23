@@ -1,8 +1,9 @@
-from flask import flash
+from flask import flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField
 from wtforms.validators import DataRequired
 from app.models.db import DBConn
+
 
 class LoginForm(FlaskForm):
     email = EmailField("email", validators=[DataRequired()])
@@ -19,7 +20,7 @@ class NewUserForm(FlaskForm):
 class User():
     def __init__(self):
         self.id = 0
-        self.name = ""
+        self.name = "Convidado"
         self.email = ""
         self.password = ""
 
@@ -37,14 +38,16 @@ class User():
         if user:
             if user[0][3] != str(password):
                 flash('Senha incorreta!','alert')
-                print("False")
                 return False
             else:
                 self.id = user[0][0]
                 self.name = user[0][1]
                 self.email = user[0][2]
                 self.password = user[0][3]
-                print("True")
+                session['username'] = str(self.name)
+                session['email'] = str(self.email)
+                session['id'] = self.id
+                print( session['username'] )
                 return True
         else:
             flash('Usuário não cadastrado!','alert')

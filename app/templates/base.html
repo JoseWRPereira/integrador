@@ -38,23 +38,41 @@
                     <span class="tooltip">Carrinhos</span>
                 </li>
                 <li>
-                    <a href="/login">
+                    {% if 'username' in session: %}
+                    <a href="/logoff">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Sair</span>
                     </a>
                     <span class="tooltip">Sair</span>
+                    {% else: %}
+                    <a href="/login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span class="links_name">Entrar</span>
+                    </a>
+                    <span class="tooltip">Entrar</span>
+                    {% endif %}
+
                 </li>
             </ul>
             <div class="profile_content">
                 <div class="profile">
                     <div class="profile_details">
+                        {% if 'username' in session: %}
                         <img src="/static/images/tux.jpg" alt="Tux">
+                        {% else: %}
+                        <!-- <img src="/static/images/nouser.png" alt=""> -->
+                        {% endif %}
                         <div class="name_job">
-                            <div class="name"> José da Silva </div>
-                            <div class="job"> Professor </div>
+                            {% if 'username' in session: %}
+                            <div class="name"> {{ session['username'] }} </div>
+                            <div class="job"> {{ session['email']}} </div>
+                            {% else: %}
+                            <div class="name">  </div>
+                            <div class="job">  </div>
+                            {% endif %}
                         </div>
                     </div>
-                    <i class="fa-solid fa-right-from-bracket" id="logout"></i>
+                    <!-- <i class="fa-solid fa-right-from-bracket" id="logout"></i> -->
                 </div>
             </div>
         </div>
