@@ -15,12 +15,11 @@
         {% endif %}
     {% endwith %}  
     <table border="1">
-        {% for u in users %}
+        {% for registro in users %}
         <tr>
-            <td> {{ u[0] }} </td>
-            <td> {{ u[1] }} </td>
-            <td> {{ u[2] }} </td>
-            <td> {{ u[3] }} </td>
+            {% for campo in registro %}
+            <td> {{ campo }} </td>
+            {% endfor %}
         </tr>
         {% endfor %}
     </table>
