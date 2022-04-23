@@ -37,6 +37,15 @@
                     </a>
                     <span class="tooltip">Carrinhos</span>
                 </li>
+                {% if 'username' in session: %}
+                <li>
+                    <a href="/users">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="links_name">Usuários</span>
+                    </a>
+                    <span class="tooltip">Usuários</span>
+                </li>
+                {% endif %}
                 <li>
                     {% if 'username' in session: %}
                     <a href="/logoff">
