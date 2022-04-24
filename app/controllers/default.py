@@ -128,17 +128,27 @@ def cars_edit(id):
 
 
 
-
+@app.route('/reservations')
+def reservations():
+    lst = db.sql_fetch("SELECT * FROM reservations;")
+    for i in lst:
+        print( i )
+    return render_template('reservations.html', lst=lst)
 
 
 
 @app.route("/dbreset")
 def dbreset():
     db.credential_defaul(  dbname='db_integrador')
+    db.sql_cmd("DROP TABLE IF EXISTS reservations;")
     db.sql_cmd("DROP TABLE IF EXISTS cars;")
     db.sql_cmd("DROP TABLE IF EXISTS users;")
     db.sql_cmd("CREATE TABLE IF NOT EXISTS users ( id SERIAL PRIMARY KEY, name VARCHAR(50), email VARCHAR(50), password VARCHAR(10) );")
     db.sql_cmd("CREATE TABLE IF NOT EXISTS cars ( id SERIAL PRIMARY KEY, name VARCHAR(20) );")
+    db.sql_cmd("CREATE TABLE IF NOT EXISTS reservations (id SERIAL PRIMARY KEY, res_date DATE, car INTEGER, user_m INTEGER, user_t INTEGER, user_n INTEGER);")
     db.sql_cmd("INSERT INTO users ( name, email, password) VALUES ('{}','{}','{}');".format( "Admin","admin@email.com", "admin" ) )
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-24', 1, 1, 2, 3))
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-25', 1, 2, 3, 1))
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-26', 2, 1, 2, 1))
     return redirect( url_for('index'))
 
