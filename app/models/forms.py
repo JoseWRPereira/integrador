@@ -17,6 +17,33 @@ class NewUserForm(FlaskForm):
     password_confirm = PasswordField("password_confirm", validators=[DataRequired()])
 
 
+class EditUserForm(FlaskForm):
+    name = StringField("name", validators=[DataRequired()])
+    email = EmailField("email", validators=[DataRequired()])
+    password = PasswordField("password", validators=[DataRequired()])
+    password_confirm = PasswordField("password_confirm", validators=[DataRequired()])
+
+
+    def selectUser(self, id ):
+        db = DBConn()
+        usr = db.sql_fetch("SELECT * FROM users WHERE id='{}';".format( id ))
+        print( usr[0][0] )
+        print( usr[0][1] )
+        print( usr[0][2] )
+        print( usr[0][3] )
+        self.name.data = str(usr[0][1])
+        self.email.data = usr[0][2]
+        self.password.data = usr[0][3]
+    
+    def saveUser(self, id):
+        db = DBConn()
+        print( id )
+        print( self.name.data )
+        print( self.email.data )
+        print( self.password.data)
+        db.sql_cmd("UPDATE users SET name='{}', email='{}', password='{}' WHERE id={};".format(self.name.data, self.email.data, self.password.data, id) )
+
+
 class User():
     def __init__(self):
         self.id = 0

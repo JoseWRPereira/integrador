@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    <h3>Alterar dados</h3>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {{ form_edituser.csrf_token }}
+    {{ form_edituser.name(maxlength="50") }}
+    {{ form_edituser.email(maxlength="50") }}
+    {{ form_edituser.password(placeholder="Senha", maxlength="10") }}
+    <input type="submit" value="Salvar" name="editUser_btn">
+    <input type="submit" value="Voltar" name="voltarEditUser_btn">
+
+</form>
+
+<script src="/static/js/newuser.js"></script>
+{% endblock %}

@@ -15,12 +15,6 @@
         {% endif %}
     {% endwith %}
 
-    <!-- <input type="text" placeholder="Nome completo" name="nome">
-    <input type="email" placeholder="usuario@email.com" name="email">
-    <input type="password" placeholder="Senha" name="passwd">
-    <input type="password" placeholder="Confirmar senha" name="confirm">
-    <input type="submit" value="Criar" name="newuser_btn"> -->
-
     {{ form_newuser.csrf_token }}
     {{ form_newuser.name( placeholder="Nome completo", maxlength="50" ) }}
     {{ form_newuser.email( placeholder="usuario@email.com", maxlength="50" ) }}

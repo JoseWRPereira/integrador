@@ -1,12 +1,10 @@
-from crypt import methods
-from flask import redirect
+from flask import redirect, request
 from flask import render_template
 from flask import url_for
 from flask import flash, session
 from app import app
-from app.models.forms import LoginForm, NewUserForm, User
+from app.models.forms import LoginForm, NewUserForm, EditUserForm, User
 from app.models.db import DBConn
-from app.models.forms import User
 
 
 db = DBConn()
@@ -50,6 +48,26 @@ def newuser():
             if usr.newuser_validate(form_newuser.name.data, form_newuser.email.data, form_newuser.password.data):
                 return render_template(url_for(users))
     return render_template('newuser.html', form_newuser=form_newuser)
+
+
+@app.route("/users/delete/<int:id>")
+def users_delete(id):
+    if 'username' in session:
+        db.sql_cmd("DELETE FROM users WHERE id='{}';".format(id) )
+    return redirect(url_for('users'))
+
+
+@app.route("/users/edit/<int:id>", methods=['GET', 'POST'])
+def users_edit(id):
+    if 'username' in session:
+        form_edituser = EditUserForm()
+        if request.method == 'POST':
+            form_edituser.saveUser(id)
+            return redirect(url_for('users'))
+        else:
+            form_edituser.selectUser(id)
+    return render_template('edituser.html', form_edituser=form_edituser)
+
 
 
 @app.route("/users")
