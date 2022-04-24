@@ -89,7 +89,8 @@
     border-radius: 6px;
     height: 35px;
     width: 122px;
-    background: var(--cor13);
+    background-color: var(--cor3);
+    color: var(--cor1);
     line-height: 35px;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);

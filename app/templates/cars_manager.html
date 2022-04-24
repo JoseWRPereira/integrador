@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Gerenciamento de Carrinhos {% endblock %}
+
+{% block content %}
+
+<form class="manager_form" action="" method="POST">
+    <h3>Gerenciamento de Carrinhos</h3>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}  
+
+
+    {{ form_car.csrf_token }}
+    {{ form_car.name( placeholder="Nome do carrinho", maxlength="20" ) }}
+
+    {% if 'car_edit_id' in session: %}
+    <input type="submit" value="Alterar" name="carAlterar_btn">
+    {% else: %}
+    <input type="submit" value="Criar" name="carCriar_btn">
+    {% endif %}
+
+
+    {% if 'username' in session: %}
+    <table>
+        {% for registro in cars %}
+        <tr>
+            {% for campo in registro %}
+            <td> {{ campo }} </td>
+            {% endfor %}
+            <td><a href="/cars/edit/{{registro[0]}}">Editar</a></td>
+            <td><a href="/cars/delete/{{registro[0]}}">Excluir</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</form>
+
+{% endblock %}

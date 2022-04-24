@@ -1,0 +1,30 @@
+@import "/static/css/style.css";
+
+.home_content .manager_form table
+{
+    position: absolute;
+    height: 100%;    
+    width: 80%;
+    left: 10px;
+    right: 10px;
+	border-collapse: collapse;
+	margin: auto;
+	border-top: 2px solid var(--cor3);
+	border-bottom: 2px solid var(--cor0);
+}
+
+.home_content .manager_form table tr
+{
+    border-bottom: 1px solid var(--cor10);
+}
+
+.home_content .manager_form table tr:hover
+{
+    background-color: var(--cor11)
+}
+
+.home_content .manager_form table tr td
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -5,6 +5,10 @@ from wtforms.validators import DataRequired
 from app.models.db import DBConn
 
 
+db = DBConn()
+
+
+
 class LoginForm(FlaskForm):
     email = EmailField("email", validators=[DataRequired()])
     password = PasswordField("password", validators=[DataRequired()])
@@ -25,7 +29,7 @@ class EditUserForm(FlaskForm):
 
 
     def selectUser(self, id ):
-        db = DBConn()
+        # db = DBConn()
         usr = db.sql_fetch("SELECT * FROM users WHERE id='{}';".format( id ))
         print( usr[0][0] )
         print( usr[0][1] )
@@ -36,7 +40,7 @@ class EditUserForm(FlaskForm):
         self.password.data = usr[0][3]
     
     def saveUser(self, id):
-        db = DBConn()
+        # db = DBConn()
         print( id )
         print( self.name.data )
         print( self.email.data )
@@ -60,7 +64,7 @@ class User():
 
 
     def login_validate(self, email, password ):
-        db = DBConn()
+        # db = DBConn()
         user = db.sql_fetch("SELECT * FROM users WHERE email='{}';".format(str(email) ))
         if user:
             if user[0][3] != str(password):
@@ -82,7 +86,7 @@ class User():
 
 
     def newuser_validate(self, name, email, password):
-        db = DBConn()
+        # db = DBConn()
         user_id = db.sql_fetch("SELECT id FROM users WHERE email='{}';".format(str(email) ))
         if user_id:
             flash('Usuário já cadastrado!','alert')
@@ -91,3 +95,45 @@ class User():
             db.sql_cmd("INSERT INTO users ( name, email, password) VALUES ('{}','{}','{}');".format( name, email, password) )
             return True
 
+
+
+
+
+
+
+
+
+
+class CarForm(FlaskForm):
+    name = StringField("name", validators=[DataRequired()])
+
+
+    def select(self, id):
+        lst = db.sql_fetch("SELECT id,name FROM cars WHERE id='{}';".format( id ))
+        self.name.data = str(lst[0][1])
+        return lst
+
+
+    def update(self, id):
+        db.sql_cmd("UPDATE cars SET name='{}' WHERE id='{}';".format(self.name.data, id) )
+
+
+    def is_valid(self):
+        existe = db.sql_fetch("SELECT id FROM cars WHERE name='{}';".format(self.name.data) )
+        if existe:
+            return False
+        else:
+            return True
+
+
+    def insert(self):
+        db.sql_cmd("INSERT INTO cars (name) VALUES ('{}');".format( self.name.data) )
+
+
+    def delete(self, id):
+        db.sql_cmd("DELETE FROM cars WHERE id='{}';".format(id) )
+
+
+    def list_all(self):
+        lst = db.sql_fetch("SELECT id,name FROM cars;")
+        return lst

@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/manager.css')}}">
         <title>{% block title %}{% endblock %}</title>
         <script src="https://kit.fontawesome.com/22e5ea0d80.js" crossorigin="anonymous"></script>    
     </head>
@@ -30,20 +31,22 @@
                     </a>
                     <span class="tooltip">Dashboard</span>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-cart-flatbed"></i>
-                        <span class="links_name">Carrinhos</span>
-                    </a>
-                    <span class="tooltip">Carrinhos</span>
-                </li>
                 {% if 'username' in session: %}
                 <li>
-                    <a href="/users">
-                        <i class="fa-solid fa-users"></i>
-                        <span class="links_name">Usuários</span>
+                    <a href="/cars/manager">
+                        <i class="fa-solid fa-cart-flatbed"></i>
+                        <span class="links_name">Ger.Carrinhos</span>
                     </a>
-                    <span class="tooltip">Usuários</span>
+                    <span class="tooltip">Ger.Carrinhos</span>
+                </li>
+                {% endif %}
+                {% if 'username' in session: %}
+                <li>
+                    <a href="/users/manager">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="links_name">Ger.Usuários</span>
+                    </a>
+                    <span class="tooltip">Ger.Usuários</span>
                 </li>
                 {% endif %}
                 <li>

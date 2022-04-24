@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %} Usuários {% endblock %}
+{% block title %} Gerenciamento de Usuários {% endblock %}
 
 {% block content %}
 
-<form action="" method="POST">
-    <h3>Usuários</h3>
-
+<form class="manager_form" action="" method="POST">
+    <h3>Gerenciamento de Usuários</h3>
+    <br>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
@@ -15,15 +15,14 @@
         {% endif %}
     {% endwith %}  
     {% if 'username' in session: %}
-    <table border="1">
+    <table>
         {% for registro in users %}
         <tr>
             {% for campo in registro %}
             <td> {{ campo }} </td>
             {% endfor %}
-            <td>
-                <a href="/users/delete/{{registro[0]}}">Excluir</a>
-            </td>
+            <td><a href="/users/edit/{{registro[0]}}">Editar</a></td>
+            <td><a href="/users/delete/{{registro[0]}}">Excluir</a></td>
         </tr>
         {% endfor %}
     </table>
