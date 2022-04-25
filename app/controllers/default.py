@@ -6,7 +6,7 @@ from app import app
 from app.models.forms import LoginForm, NewUserForm, EditUserForm, User
 from app.models.forms import CarForm
 from app.models.db import DBConn
-
+from datetime import date
 
 db = DBConn()
 usr = User()
@@ -128,12 +128,18 @@ def cars_edit(id):
 
 
 
-@app.route('/reservations')
+@app.route('/reservations', methods=['GET','POST'])
 def reservations():
-    lst = db.sql_fetch("SELECT * FROM reservations;")
+    if not 'reservation_date' in session:
+        session['reservation_date'] = date.today()
+        print(session['reservation_date'])
+        print("###########") #date.strftime("%d/%m/%y")
+    if request.method == 'POST':
+        session['reservation_date'] = request.form['calendario']
+    lst = db.sql_fetch("SELECT * FROM reservations WHERE res_date='{}';".format(session['reservation_date']))
     for i in lst:
         print( i )
-    return render_template('reservations.html', lst=lst)
+    return render_template('reservations.html', lst=lst )
 
 
 
