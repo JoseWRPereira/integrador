@@ -41,6 +41,15 @@
                 </li>
                 {% if 'username' in session: %}
                 <li>
+                    <a href="/scheduling">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="links_name">Agendamento</span>
+                    </a>
+                    <span class="tooltip">Agendamento</span>
+                </li>
+                {% endif %}
+                {% if 'username' in session: %}
+                <li>
                     <a href="/cars/manager">
                         <i class="fa-solid fa-cart-flatbed"></i>
                         <span class="links_name">Ger.Carrinhos</span>

@@ -1,3 +1,5 @@
+from operator import concat
+from ssl import match_hostname
 from flask import redirect, request
 from flask import render_template
 from flask import url_for
@@ -7,6 +9,7 @@ from app.models.forms import LoginForm, NewUserForm, EditUserForm, User
 from app.models.forms import CarForm
 from app.models.db import DBConn
 from datetime import date
+from flask import json
 
 db = DBConn()
 usr = User()
@@ -142,6 +145,36 @@ def reservations():
     return render_template('reservations.html', lst=lst )
 
 
+@app.route('/scheduling', methods=['GET','POST'])
+def scheduling():
+    if not 'reservation_date' in session:
+        session['reservation_date'] = date.today()
+
+    if request.method == 'POST':
+        session['reservation_date'] = request.form['calendario']
+
+    registros = db.sql_fetch("SELECT id,name FROM cars;")
+
+    mask = ['','m','t','n']
+    lst = []
+    for campo in registros:
+        reg = db.sql_fetch("SELECT car,user_m,user_t,user_n FROM reservations WHERE res_date='{}' AND car='{}' ORDER BY id ASC;".format(session['reservation_date'], campo[0]) )
+        sub = []
+        if reg:
+            for i in range(0,4): #lst[0]:
+                if reg[0][i] != None:
+                    sub.append(reg[0][i])
+                else:
+                    sub.append(mask[i])
+        else:
+            sub.append(campo[0])
+            sub.append(mask[1])
+            sub.append(mask[2])
+            sub.append(mask[3])
+        lst.append(sub)
+    return render_template('scheduling.html', lst=lst )
+
+
 
 @app.route("/dbreset")
 def dbreset():
@@ -154,7 +187,9 @@ def dbreset():
     db.sql_cmd("CREATE TABLE IF NOT EXISTS reservations (id SERIAL PRIMARY KEY, res_date DATE, car INTEGER, user_m INTEGER, user_t INTEGER, user_n INTEGER);")
     db.sql_cmd("INSERT INTO users ( name, email, password) VALUES ('{}','{}','{}');".format( "Admin","admin@email.com", "admin" ) )
     db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-24', 1, 1, 2, 3))
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-25', 1, 2, 3, 1))
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t) VALUES ('{}','{}','{}','{}');".format('2022-04-25', 1, 2, 3))
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 2, 1))
+    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 3, 4))
     db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-26', 2, 1, 2, 1))
     return redirect( url_for('index'))
 

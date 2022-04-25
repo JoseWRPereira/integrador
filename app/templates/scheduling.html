@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Agendamento {% endblock %}
+
+{% block content %}
+<form class="reservations" method="POST">
+    <div class="calendar">
+        <label for="calendario">Calendário</label>
+        <input type="date" id="calendario" name="calendario" value="{{session['reservation_date']}}">
+        <input type="submit" value="Buscar" id="buscar_btn">
+    </div>
+    <br>
+    <table>
+        <tr>
+            <td>Carrinho</td>
+            <td>Manhã</td>
+            <td>Tarde</td>
+            <td>Noite</td>
+        </tr>
+        {% for registro in lst %}
+        <tr>
+            {% for i in registro: %}
+                {% if i == 'm' or i == 't' or i == 'n':%}
+            <td><a href="/scheduling/{{registro[0]}}/{{i}}">Reservar</a></td>
+                {% else:%}
+            <td> {{i}} </td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}
