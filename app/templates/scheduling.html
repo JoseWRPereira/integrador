@@ -6,7 +6,7 @@
 <form class="reservations" method="POST">
     <div class="calendar">
         <label for="calendario">Calendário</label>
-        <input type="date" id="calendario" name="calendario" value="{{session['reservation_date']}}">
+        <input type="date" id="calendario" name="calendario" min="{{session['today_date']}}" max="{{session['max_date']}}" value="{{session['reservation_date']}}">
         <input type="submit" value="Buscar" id="buscar_btn">
     </div>
     <br>
@@ -20,7 +20,9 @@
         {% for registro in lst %}
         <tr>
             {% for i in registro: %}
-                {% if i == 'm' or i == 't' or i == 'n':%}
+                {% if i == session['id']: %}
+                <td><a href="/scheduling/cancel/{{registro[0]}}/{{registro.index(i)}}">Cancelar</a></td>
+                {% elif i == 'm' or i == 't' or i == 'n':%}
             <td><a href="/scheduling/{{registro[0]}}/{{i}}">Reservar</a></td>
                 {% else:%}
             <td> {{i}} </td>

@@ -49,44 +49,30 @@ class EditUserForm(FlaskForm):
 
 
 class User():
-    def __init__(self):
-        self.id = 0
-        self.name = "Convidado"
-        self.email = ""
-        self.password = ""
-
-
-    def logged_in(self):
-        if self.id != 0:
-            return True
-        else:
-            return False
-
 
     def login_validate(self, email, password ):
-        # db = DBConn()
         user = db.sql_fetch("SELECT * FROM users WHERE email='{}';".format(str(email) ))
         if user:
             if user[0][3] != str(password):
                 flash('Senha incorreta!','alert')
                 return False
             else:
-                self.id = user[0][0]
-                self.name = user[0][1]
-                self.email = user[0][2]
-                self.password = user[0][3]
-                session['username'] = str(self.name)
-                session['email'] = str(self.email)
-                session['id'] = self.id
-                print( session['username'] )
+                session['id'] = user[0][0]
+                session['username'] = user[0][1]
+                session['email'] = user[0][2]
                 return True
         else:
             flash('Usuário não cadastrado!','alert')
             return False
 
 
+    def logoff(self):
+        session.pop('username', None)
+        session.pop('email', None)
+        session.pop('id', None)
+
+
     def newuser_validate(self, name, email, password):
-        # db = DBConn()
         user_id = db.sql_fetch("SELECT id FROM users WHERE email='{}';".format(str(email) ))
         if user_id:
             flash('Usuário já cadastrado!','alert')
@@ -137,3 +123,32 @@ class CarForm(FlaskForm):
     def list_all(self):
         lst = db.sql_fetch("SELECT id,name FROM cars;")
         return lst
+
+
+
+
+
+
+class Agenda():
+    def lst(self):
+        registros = db.sql_fetch("SELECT id,name FROM cars;")
+
+        mask = ['','m','t','n']
+        lst = []
+        for campo in registros:
+            reg = db.sql_fetch("SELECT car,user_m,user_t,user_n FROM reservations WHERE res_date='{}' AND car='{}' ORDER BY id ASC;".format(session['reservation_date'], campo[0]) )
+            sub = []
+            if reg:
+                for i in range(0,4):
+                    if reg[0][i] != None:
+                        sub.append(reg[0][i])
+                    else:
+                        sub.append(mask[i])
+            else:
+                sub.append(campo[0])
+                sub.append(mask[1])
+                sub.append(mask[2])
+                sub.append(mask[3])
+            lst.append(sub)
+        return lst
+

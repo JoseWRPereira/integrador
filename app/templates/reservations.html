@@ -14,8 +14,6 @@
     <br>
     <table>
         <tr>
-            <td>ID</td>
-            <td>Data</td>
             <td>Carrinho</td>
             <td>Manhã</td>
             <td>Tarde</td>
@@ -23,8 +21,12 @@
         </tr>
         {% for registro in lst %}
         <tr>
-            {% for i in registro %}
+            {% for i in registro: %}
+                {% if i == 'm' or i == 't' or i == 'n':%}
+            <td> </td>
+                {% else:%}
             <td> {{i}} </td>
+                {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}

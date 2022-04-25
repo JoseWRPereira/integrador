@@ -1,5 +1,3 @@
-from operator import concat
-from ssl import match_hostname
 from flask import redirect, request
 from flask import render_template
 from flask import url_for
@@ -7,13 +5,13 @@ from flask import flash, session
 from app import app
 from app.models.forms import LoginForm, NewUserForm, EditUserForm, User
 from app.models.forms import CarForm
+from app.models.forms import Agenda
 from app.models.db import DBConn
-from datetime import date
-from flask import json
+from datetime import date, timedelta
 
 db = DBConn()
 usr = User()
-
+agenda = Agenda()
 
 @app.route("/")
 def index():
@@ -34,9 +32,10 @@ def login():
 
 @app.route("/logoff", methods=['GET'])
 def logoff():
-    session.pop('username', None)
-    session.pop('email', None)
-    session.pop('id', None)
+    # session.pop('username', None)
+    # session.pop('email', None)
+    # session.pop('id', None)
+    usr.logoff()
     return redirect(url_for('login'))
 
 
@@ -133,48 +132,68 @@ def cars_edit(id):
 
 @app.route('/reservations', methods=['GET','POST'])
 def reservations():
+    session['today_date'] = date.today()
     if not 'reservation_date' in session:
         session['reservation_date'] = date.today()
-        print(session['reservation_date'])
-        print("###########") #date.strftime("%d/%m/%y")
     if request.method == 'POST':
         session['reservation_date'] = request.form['calendario']
-    lst = db.sql_fetch("SELECT * FROM reservations WHERE res_date='{}';".format(session['reservation_date']))
-    for i in lst:
-        print( i )
+    # lst = db.sql_fetch("SELECT * FROM reservations WHERE res_date='{}';".format(session['reservation_date']))
+    lst = agenda.lst()
     return render_template('reservations.html', lst=lst )
 
 
 @app.route('/scheduling', methods=['GET','POST'])
 def scheduling():
+    session['today_date'] = date.today()
+    session['max_date'] = date.today() + timedelta(days=30)
+    print(session['today_date'])
+
     if not 'reservation_date' in session:
         session['reservation_date'] = date.today()
 
     if request.method == 'POST':
         session['reservation_date'] = request.form['calendario']
 
-    registros = db.sql_fetch("SELECT id,name FROM cars;")
-
-    mask = ['','m','t','n']
-    lst = []
-    for campo in registros:
-        reg = db.sql_fetch("SELECT car,user_m,user_t,user_n FROM reservations WHERE res_date='{}' AND car='{}' ORDER BY id ASC;".format(session['reservation_date'], campo[0]) )
-        sub = []
-        if reg:
-            for i in range(0,4): #lst[0]:
-                if reg[0][i] != None:
-                    sub.append(reg[0][i])
-                else:
-                    sub.append(mask[i])
-        else:
-            sub.append(campo[0])
-            sub.append(mask[1])
-            sub.append(mask[2])
-            sub.append(mask[3])
-        lst.append(sub)
+    lst = agenda.lst()
     return render_template('scheduling.html', lst=lst )
 
 
+@app.route('/scheduling/cancel/<car>/<periodo>', methods=['GET','POST'])
+def scheduling_cancel(car, periodo):
+    # if 'username' in session:
+    #     id = db.sql_fetch("SELECT id FROM reservations WHERE res_date='{}' AND car='{}';".format(session['reservation_date'], car) )
+    #     if id:
+    #         if periodo=='m':
+    #             db.sql_cmd("UPDATE reservations SET user_m='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+    #         elif periodo=='t':
+    #             db.sql_cmd("UPDATE reservations SET user_t='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+    #         elif periodo=='n':
+    #             db.sql_cmd("UPDATE reservations SET user_n='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+    return redirect(url_for('scheduling'))
+
+@app.route('/scheduling/<car>/<periodo>', methods=['GET','POST'])
+def scheduling_add(car, periodo):
+    if 'username' in session:
+        id = db.sql_fetch("SELECT id FROM reservations WHERE res_date='{}' AND car='{}';".format(session['reservation_date'], car) )
+        if id:
+            if periodo=='m':
+                db.sql_cmd("UPDATE reservations SET user_m='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+            elif periodo=='t':
+                db.sql_cmd("UPDATE reservations SET user_t='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+            elif periodo=='n':
+                db.sql_cmd("UPDATE reservations SET user_n='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
+        else:
+            if periodo=='m':
+                db.sql_cmd("INSERT INTO reservations (res_date, car, user_m) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
+            elif periodo=='t':
+                db.sql_cmd("INSERT INTO reservations (res_date, car, user_t) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
+            elif periodo=='n':
+                db.sql_cmd("INSERT INTO reservations (res_date, car, user_n) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
+
+    print("Teste id inicio")
+    print( session['id'] )
+    print("Teste id fim")
+    return redirect(url_for('scheduling'))
 
 @app.route("/dbreset")
 def dbreset():
