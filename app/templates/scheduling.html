@@ -19,13 +19,14 @@
         </tr>
         {% for registro in lst %}
         <tr>
-            {% for i in registro: %}
-                {% if i == session['id']: %}
-                <td><a href="/scheduling/cancel/{{registro[0]}}/{{registro.index(i)}}">Cancelar</a></td>
-                {% elif i == 'm' or i == 't' or i == 'n':%}
-            <td><a href="/scheduling/{{registro[0]}}/{{i}}">Reservar</a></td>
+            <td> {{registro[0]}} </td>
+            {% for i in range(1,4): %}
+                {% if registro[i] == session['id']: %}
+            <td><a href="/scheduling/cancel/{{ registro[0] }}/{{ i }}">Cancelar</a></td>
+                {% elif registro[i] == 'm' or registro[i] == 't' or registro[i] == 'n': %}
+            <td><a href="/scheduling/reservar/{{ registro[0] }}/{{ i }}">Reservar</a></td>
                 {% else:%}
-            <td> {{i}} </td>
+            <td> {{registro[i]}} </td>
                 {% endif %}
             {% endfor %}
         </tr>
