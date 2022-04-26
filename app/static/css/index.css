@@ -1,0 +1,16 @@
+@import "/static/css/style.css";
+
+
+
+.landing_title
+{
+    padding: 30px;
+    margin-left: 20%;
+    color: var(--cor3);
+}
+.landing img
+{
+    position: absolute;
+    margin-left: 25%;
+}
+  
