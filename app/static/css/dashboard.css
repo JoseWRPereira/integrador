@@ -19,7 +19,7 @@
 
 .sidebar .logo_content .logo
 {
-    color: var(--cor1);
+    color: var(--cor2);
     display: flex;
     height: 50px;
     width: 100%;
@@ -40,6 +40,11 @@
     font-size: 28px;
     margin-right: 5px;
 }
+.logo_content .logo svg
+{
+    font-size: 28px;
+    margin-right: 5px;
+}
 
 
 .logo_content .logo .logo_name
@@ -51,7 +56,7 @@
 .sidebar #btn
 {
     position: absolute;
-    color: var(--cor1);
+    color: var(--cor2);
     left: 50%;
     top: 6px;
     font-size: 20px;
@@ -90,7 +95,7 @@
     height: 35px;
     width: 122px;
     background-color: var(--cor3);
-    color: var(--cor1);
+    color: var(--cor2);
     line-height: 35px;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
@@ -122,29 +127,29 @@
     border-radius: 12px;
     outline: none;
     border: none;
-    background: var(--cor13);
+    background: var(--cor34);
     padding-left: 50px;
     font-size: 18px;
-    color: var(--cor0);
+    color: var(--cor20);
 }
 .sidebar ul li .fa-magnifying-glass
 {
     position: absolute;
     z-index: 99;
-    color: var(--cor10);
+    color: var(--cor15);
     font-size: 22px;
     transition: all 0.5 sease;
 }
 
 .sidebar ul li .fa-magnifying-glass:hover
 {
-    background: var(--cor10);
-    color: var(--cor0);
+    background: var(--cor15);
+    color: var(--cor10);
 }
 
 .sidebar ul li a
 {
-    color: var(--cor11);
+    color: var(--cor15);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -154,8 +159,8 @@
 }
 .sidebar ul li a:hover
 {
-    color: var(--cor3);
-    background: var(--cor11);
+    color: var(--cor33);
+    background: var(--cor15);
 }
 .sidebar ul li i
 {
@@ -182,7 +187,7 @@
 .sidebar .profile_content
 {
     position: absolute;
-    color: var(--cor1);
+    color: var(--cor15);
     bottom: 0;
     left: 0;
     width: 100%;
@@ -194,7 +199,7 @@
     position: relative;
     padding: 10px 6px;
     height: 60px;
-    background: var(--cor10);
+    background: var(--cor12);
     transition: all 0.4s ease;
 }
 
@@ -250,7 +255,7 @@
     font-size: 12px;
 }
 
-.profile #logout
+/* .profile #logout
 {
     position: absolute;
     bottom: 5%;
@@ -262,8 +267,8 @@
     border-radius: 12px;
     text-align: center;
     transition: all 0.5s ease;
-    background: var(--cor20);
-}
+    background: var(--cor40);
+} */
 
 /* .sidebar.active .profile #logout
 {
@@ -288,7 +293,7 @@
 {
     font-size: 25px;
     font-weight: 500;
-    color: var(--cor0);
+    color: var(--cor10);
     margin: 12px;
 }
 
@@ -299,8 +304,31 @@
 }
 
 
+/* svg
+{
+  width: 42px;
+  height: 42px;
+}
+
+.svg-nav-fill
+{
+  fill: var(--cor1);
+}
+
+.svg-footer-fill:hover
+{
+  fill: var(--cor3);
+} */
+
+
+
+
 /* 
     Fonte: CodingLab
     URL: https://youtu.be/wEfaoAa99XY
     Acessado em 18/04/2022 
 */
+
+
+
+
