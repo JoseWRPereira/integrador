@@ -208,7 +208,7 @@ def dbreset():
         session.pop('admin', None)
 
 
-    db.credential_defaul(  dbname='db_integrador')
+    # db.credential_defaul(  dbname='db_integrador')
     db.sql_cmd("DROP TABLE IF EXISTS reservations;")
     db.sql_cmd("DROP TABLE IF EXISTS cars;")
     db.sql_cmd("DROP TABLE IF EXISTS users;")

@@ -11,18 +11,26 @@ class DBConn():
         self.password = 'postgres'
         self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
     
-    def credential_defaul(self, dbname):
-        self.database = dbname
-        # self.uri = "postgresql://"+self.user+":"+self.password+"@"+self.host+":"+self.port+"/"+self.database
-        self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
+        # self.host = 'ec2-3-211-6-217.compute-1.amazonaws.com'
+        # self.database = 'd1r5lc2aibuqho'
+        # self.user = 'osgdqebnpjiady'
+        # self.port = '5432'
+        # self.password = '6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a'
+        # self.uri = "postgres://osgdqebnpjiady:6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d1r5lc2aibuqho"
 
-    def credential(self, host, dbname, user, port, passwd):
-        self.host = host
-        self.database = dbname
-        self.user = user
-        self.port = port
-        self.password = passwd
-        self.uri = "postgresql://"+user+":"+passwd+"@"+host+":"+port+"/"+dbname
+
+    # def credential_defaul(self, dbname):
+    #     self.database = dbname
+    #     # self.uri = "postgresql://"+self.user+":"+self.password+"@"+self.host+":"+self.port+"/"+self.database
+    #     self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
+
+    # def credential(self, host, dbname, user, port, passwd):
+    #     self.host = host
+    #     self.database = dbname
+    #     self.user = user
+    #     self.port = port
+    #     self.password = passwd
+    #     self.uri = "postgresql://"+user+":"+passwd+"@"+host+":"+port+"/"+dbname
 
 
     def sql_fetch(self, sql):

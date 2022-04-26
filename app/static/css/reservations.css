@@ -10,17 +10,17 @@
 	border-collapse: collapse;
 	margin: auto;
 	border-top: 2px solid var(--cor3);
-	border-bottom: 2px solid var(--cor0);
+	border-bottom: 2px solid var(--cor1);
 }
 
 .home_content .reservations table tr
 {
-    border-bottom: 1px solid var(--cor10);
+    border-bottom: 1px solid var(--cor1);
 }
 
 .home_content .reservations table tr:hover
 {
-    background-color: var(--cor11)
+    background-color: var(--cor21)
 }
 
 .home_content .reservations table tr td
