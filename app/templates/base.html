@@ -48,7 +48,7 @@
                     <span class="tooltip">Agendamento</span>
                 </li>
                 {% endif %}
-                {% if 'username' in session: %}
+                {% if session['admin']==True: %}
                 <li>
                     <a href="/cars/manager">
                         <i class="fa-solid fa-cart-flatbed"></i>
@@ -57,7 +57,7 @@
                     <span class="tooltip">Ger.Carrinhos</span>
                 </li>
                 {% endif %}
-                {% if 'username' in session: %}
+                {% if session['admin']==True: %}
                 <li>
                     <a href="/users/manager">
                         <i class="fa-solid fa-users"></i>
@@ -93,8 +93,8 @@
                         {% endif %}
                         <div class="name_job">
                             {% if 'username' in session: %}
-                            <div class="name"> {{ session['username'] }} </div>
-                            <div class="job"> {{ session['email']}} </div>
+                            <div class="name"> {{ session['email'] }} </div>
+                            <div class="job"> {{ session['nif']}} </div>
                             {% else: %}
                             <div class="name">  </div>
                             <div class="job">  </div>

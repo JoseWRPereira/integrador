@@ -19,39 +19,31 @@ class NewUserForm(FlaskForm):
     email = EmailField("email", validators=[DataRequired()])
     password = PasswordField("password", validators=[DataRequired()])
     password_confirm = PasswordField("password_confirm", validators=[DataRequired()])
-
+    nif = StringField("nif", validators=[DataRequired()])
 
 class EditUserForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
+    nif = StringField("nif", validators=[DataRequired()])
     email = EmailField("email", validators=[DataRequired()])
     password = PasswordField("password", validators=[DataRequired()])
     password_confirm = PasswordField("password_confirm", validators=[DataRequired()])
 
 
     def selectUser(self, id ):
-        # db = DBConn()
-        usr = db.sql_fetch("SELECT * FROM users WHERE id='{}';".format( id ))
-        print( usr[0][0] )
-        print( usr[0][1] )
-        print( usr[0][2] )
-        print( usr[0][3] )
+        usr = db.sql_fetch("SELECT id,nome,email,password,nif,admin FROM users WHERE id='{}';".format( id ))
         self.name.data = str(usr[0][1])
         self.email.data = usr[0][2]
         self.password.data = usr[0][3]
+        self.nif.data = usr[0][4]
     
     def saveUser(self, id):
-        # db = DBConn()
-        print( id )
-        print( self.name.data )
-        print( self.email.data )
-        print( self.password.data)
-        db.sql_cmd("UPDATE users SET name='{}', email='{}', password='{}' WHERE id={};".format(self.name.data, self.email.data, self.password.data, id) )
+        db.sql_cmd("UPDATE users SET name='{}', email='{}', password='{}', nif='{}' WHERE id={};".format(self.name.data, self.email.data, self.password.data, self.nif.data, id) )
 
 
 class User():
 
     def login_validate(self, email, password ):
-        user = db.sql_fetch("SELECT * FROM users WHERE email='{}';".format(str(email) ))
+        user = db.sql_fetch("SELECT id,name,email,password,nif,admin FROM users WHERE email='{}';".format(str(email) ))
         if user:
             if user[0][3] != str(password):
                 flash('Senha incorreta!','alert')
@@ -60,25 +52,30 @@ class User():
                 session['id'] = user[0][0]
                 session['username'] = user[0][1]
                 session['email'] = user[0][2]
+                session['nif'] = user[0][4]
+                session['admin'] = user[0][5]
                 return True
         else:
             flash('Usuário não cadastrado!','alert')
             return False
 
 
-    def logoff(self):
+    def logout(self):
         session.pop('username', None)
         session.pop('email', None)
         session.pop('id', None)
+        session.pop('nif', None)
+        session.pop('admin', None)
 
 
-    def newuser_validate(self, name, email, password):
-        user_id = db.sql_fetch("SELECT id FROM users WHERE email='{}';".format(str(email) ))
-        if user_id:
+    def newuser_validate(self, name, email, password, nif):
+        user_id  = db.sql_fetch("SELECT id FROM users WHERE email='{}';".format(str(email) ))
+        user_nif = db.sql_fetch("SELECT id FROM users WHERE nif='{}';".format(str(nif) ))
+        if user_id or user_nif:
             flash('Usuário já cadastrado!','alert')
             return False
         else:
-            db.sql_cmd("INSERT INTO users ( name, email, password) VALUES ('{}','{}','{}');".format( name, email, password) )
+            db.sql_cmd("INSERT INTO users ( name, email, password, nif, admin) VALUES ('{}','{}','{}','{}',False);".format( name, email, password, nif) )
             return True
 
 

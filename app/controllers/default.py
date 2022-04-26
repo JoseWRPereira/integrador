@@ -30,9 +30,9 @@ def login():
     return render_template('login.html', form_login=form_login)
 
 
-@app.route("/logoff", methods=['GET'])
+@app.route("/logoff")
 def logoff():
-    usr.logoff()
+    usr.logout()
     return redirect(url_for('login'))
 
 
@@ -45,7 +45,7 @@ def newuser():
         elif form_newuser.password.data != form_newuser.password_confirm.data:
             flash('Senhas diferentes!','alert')
         else:
-            if usr.newuser_validate(form_newuser.name.data, form_newuser.email.data, form_newuser.password.data):
+            if usr.newuser_validate(form_newuser.name.data, form_newuser.email.data, form_newuser.password.data, form_newuser.nif.data):
                 return redirect(url_for('login'))
     return render_template('newuser.html', form_newuser=form_newuser)
 
@@ -72,7 +72,7 @@ def users_edit(id):
 @app.route("/users/manager", methods=['GET','POST'])
 def users_manager():
     db = DBConn()
-    users = db.sql_fetch("SELECT id, name, email FROM users;")
+    users = db.sql_fetch("SELECT id,name,email,nif,admin FROM users;")
     return render_template('users_manager.html', users=users)
 
 
@@ -195,18 +195,31 @@ def scheduling_reservar(car, periodo):
 
 @app.route("/dbreset")
 def dbreset():
+
+    if 'username' in session:
+        session.pop('username', None)
+    if 'email' in session:
+        session.pop('email', None)
+    if 'id' in session:
+        session.pop('id', None)
+    if 'nif' in session:
+        session.pop('nif', None)
+    if 'admin' in session:
+        session.pop('admin', None)
+
+
     db.credential_defaul(  dbname='db_integrador')
     db.sql_cmd("DROP TABLE IF EXISTS reservations;")
     db.sql_cmd("DROP TABLE IF EXISTS cars;")
     db.sql_cmd("DROP TABLE IF EXISTS users;")
-    db.sql_cmd("CREATE TABLE IF NOT EXISTS users ( id SERIAL PRIMARY KEY, name VARCHAR(50), email VARCHAR(50), password VARCHAR(10) );")
+    db.sql_cmd("CREATE TABLE IF NOT EXISTS users ( id SERIAL PRIMARY KEY, name VARCHAR(50), email VARCHAR(50), password VARCHAR(10), nif VARCHAR(10), admin BOOLEAN );")
     db.sql_cmd("CREATE TABLE IF NOT EXISTS cars ( id SERIAL PRIMARY KEY, name VARCHAR(20) );")
     db.sql_cmd("CREATE TABLE IF NOT EXISTS reservations (id SERIAL PRIMARY KEY, res_date DATE, car INTEGER, user_m INTEGER, user_t INTEGER, user_n INTEGER);")
-    db.sql_cmd("INSERT INTO users ( name, email, password) VALUES ('{}','{}','{}');".format( "Admin","admin@email.com", "admin" ) )
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-24', 1, 1, 2, 3))
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t) VALUES ('{}','{}','{}','{}');".format('2022-04-25', 1, 2, 3))
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 2, 1))
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 3, 4))
-    db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-26', 2, 1, 2, 1))
+    db.sql_cmd("INSERT INTO users ( name, email, password, nif, admin) VALUES ('Administrador','admin@email.com','admin','0000',True);" )
+    # db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-24', 1, 1, 2, 3))
+    # db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t) VALUES ('{}','{}','{}','{}');".format('2022-04-25', 1, 2, 3))
+    # db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 2, 1))
+    # db.sql_cmd("INSERT INTO reservations (res_date,car,user_m) VALUES ('{}','{}','{}');".format('2022-04-25', 3, 4))
+    # db.sql_cmd("INSERT INTO reservations (res_date,car,user_m,user_t,user_n) VALUES ('{}','{}','{}','{}','{}');".format('2022-04-26', 2, 1, 2, 1))
     return redirect( url_for('index'))
 

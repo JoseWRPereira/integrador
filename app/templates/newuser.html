@@ -17,6 +17,7 @@
 
     {{ form_newuser.csrf_token }}
     {{ form_newuser.name( placeholder="Nome completo", maxlength="50" ) }}
+    {{ form_newuser.nif( placeholder="Num. Ident. Funcional", maxlength="10" ) }}
     {{ form_newuser.email( placeholder="usuario@email.com", maxlength="50" ) }}
     {{ form_newuser.password( placeholder="Senha", maxlength="10") }}
     {{ form_newuser.password_confirm( placeholder="Confirme a Senha", maxlength="10") }}

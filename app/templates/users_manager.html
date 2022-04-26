@@ -16,7 +16,15 @@
     {% endwith %}  
     {% if 'username' in session: %}
     <table>
-        {% for registro in users %}
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>E-mail</td>
+            <td>NIF</td>
+            <td>Admin</td>
+            <td>Ações</td>
+        </tr>
+                {% for registro in users %}
         <tr>
             {% for campo in registro %}
             <td> {{ campo }} </td>
