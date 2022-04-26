@@ -53,6 +53,7 @@
     font-weight: 400;
 }
 
+
 .sidebar #btn
 {
     position: absolute;
@@ -304,18 +305,19 @@
 }
 
 
-/* svg
+svg
 {
-  width: 42px;
-  height: 42px;
+  width: 30px;
+  height: 30px;
+  fill: var(--cor20)
 }
 
-.svg-nav-fill
+/* .svg-nav-fill
 {
   fill: var(--cor1);
-}
+} */
 
-.svg-footer-fill:hover
+/* .svg-footer-fill:hover
 {
   fill: var(--cor3);
 } */
