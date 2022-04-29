@@ -1,22 +1,17 @@
 import psycopg2
 import psycopg2.extras
 from psycopg2 import Error
+from config import DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_URI, DB_USER
 
 class DBConn():
     def __init__(self):
-        self.host = '127.0.0.1'
-        self.database = 'db_integrador'
-        self.user = 'postgres'
-        self.port = '5432'
-        self.password = 'postgres'
-        self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
-    
-        # self.host = 'ec2-3-211-6-217.compute-1.amazonaws.com'
-        # self.database = 'd1r5lc2aibuqho'
-        # self.user = 'osgdqebnpjiady'
-        # self.port = '5432'
-        # self.password = '6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a'
-        # self.uri = "postgres://osgdqebnpjiady:6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d1r5lc2aibuqho"
+        self.host = DB_HOST
+        self.database = DB_DATABASE
+        self.user = DB_USER
+        self.port = DB_PORT
+        self.password = DB_PASSWORD
+        self.uri = DB_URI
+
 
     def sql_fetch(self, sql):
         try:
