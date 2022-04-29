@@ -56,16 +56,16 @@
                 {% endif %}
                 {% if session['admin']==True: %}
                 <li>
-                    <a href="/cars/manager">
+                    <a href="/cars_manager">
                         <i class="fa-solid fa-cart-flatbed"></i>
                         <span class="links_name">Ger.Carrinhos</span>
                     </a>
                     <span class="tooltip">Ger.Carrinhos</span>
                 </li>
                 {% endif %}
-                {% if session['admin']==True: %}
+                {% if 'username' in session: %}
                 <li>
-                    <a href="/users/manager">
+                    <a href="/users_manager">
                         <i class="fa-solid fa-users"></i>
                         <span class="links_name">Ger.Usuários</span>
                     </a>
@@ -74,13 +74,13 @@
                 {% endif %}
                 <li>
                     {% if 'username' in session: %}
-                    <a href="/logoff">
+                    <a href="/user_logout">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="links_name">Sair</span>
                     </a>
                     <span class="tooltip">Sair</span>
                     {% else: %}
-                    <a href="/login">
+                    <a href="/user_login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <span class="links_name">Entrar</span>
                     </a>

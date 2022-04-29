@@ -18,21 +18,6 @@ class DBConn():
         # self.password = '6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a'
         # self.uri = "postgres://osgdqebnpjiady:6a41acdfce24f4c0a4b6629ec1c465bea2365ec75e07cd4d231d33c36421e75a@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d1r5lc2aibuqho"
 
-
-    # def credential_defaul(self, dbname):
-    #     self.database = dbname
-    #     # self.uri = "postgresql://"+self.user+":"+self.password+"@"+self.host+":"+self.port+"/"+self.database
-    #     self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
-
-    # def credential(self, host, dbname, user, port, passwd):
-    #     self.host = host
-    #     self.database = dbname
-    #     self.user = user
-    #     self.port = port
-    #     self.password = passwd
-    #     self.uri = "postgresql://"+user+":"+passwd+"@"+host+":"+port+"/"+dbname
-
-
     def sql_fetch(self, sql):
         try:
             connection = psycopg2.connect( self.uri )
@@ -76,23 +61,11 @@ class DBConn():
                 print("PostgreSQL connection is closed")
 
 
-# class DBCredential_local:
-#     def __init__(self):
-#         self.host = '127.0.0.1'
-#         self.database = 'db_integrador'
-#         self.user = 'postgres'
-#         self.port = '5432'
-#         self.password = 'postgres'
-#         self.uri = "postgresql://postgres:postgres@localhost:5432/db_integrador"
-
-# class DBCredential_online:
-#     def __init__(self):
-#         self.host = 'ec2-52-20-143-167.compute-1.amazonaws.com'
-#         self.database = 'd1f1r9u6nff5vk'
-#         self.user = 'kgjlgrirpawegc'
-#         self.port = '5432'
-#         self.password = 'b6e2ce9c166a323946076f92d4cf13911b342f777555a391e7cc599208f83b39'
-#         self.uri = 'postgres://kgjlgrirpawegc:b6e2ce9c166a323946076f92d4cf13911b342f777555a391e7cc599208f83b39@ec2-52-20-143-167.compute-1.amazonaws.com:5432/d1f1r9u6nff5vk'
-#         self.heroku_cli = 'heroku pg:psql postgresql-octagonal-47192 --app agendei-pi1'
-
-
+    def create_db(self):
+        self.sql_cmd("DROP TABLE IF EXISTS reservations;")
+        self.sql_cmd("DROP TABLE IF EXISTS cars;")
+        self.sql_cmd("DROP TABLE IF EXISTS users;")
+        self.sql_cmd("CREATE TABLE IF NOT EXISTS users ( id SERIAL PRIMARY KEY, name VARCHAR(50), email VARCHAR(50), password VARCHAR(10), nif VARCHAR(10), admin BOOLEAN );")
+        self.sql_cmd("CREATE TABLE IF NOT EXISTS cars ( id SERIAL PRIMARY KEY, name VARCHAR(20) );")
+        self.sql_cmd("CREATE TABLE IF NOT EXISTS reservations (id SERIAL PRIMARY KEY, res_date DATE, car INTEGER, user_m INTEGER, user_t INTEGER, user_n INTEGER);")
+        self.sql_cmd("INSERT INTO users ( name, email, password, nif, admin) VALUES ('Administrador','admin@email.com','admin','0000',True);" )

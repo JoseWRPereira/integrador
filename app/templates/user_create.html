@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Novo usuário {% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    <h3>Novo usuário</h3>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {{ form_user.csrf_token }}
+    {{ form_user.name( placeholder="Nome completo", maxlength="50" ) }}
+    {{ form_user.nif( placeholder="Num. Ident. Funcional", maxlength="10" ) }}
+    {{ form_user.email( placeholder="usuario@email.com", maxlength="50" ) }}
+    {{ form_user.password( placeholder="Senha", maxlength="10") }}
+    {{ form_user.password_confirm( placeholder="Confirme a Senha", maxlength="10") }}
+    <input type="submit" value="Salvar" name="newuser_btn">
+
+</form>
+
+
+<script src="/static/js/user_create.js"></script>
+{% endblock %}

@@ -29,8 +29,8 @@
             {% for campo in registro %}
             <td> {{ campo }} </td>
             {% endfor %}
-            <td><a href="/users/edit/{{registro[0]}}">Editar</a></td>
-            <td><a href="/users/delete/{{registro[0]}}">Excluir</a></td>
+            <td><a href="/edit_user/{{registro[0]}}">Editar</a></td>
+            <td><a href="/delete_user/{{registro[0]}}">Excluir</a></td>
         </tr>
         {% endfor %}
     </table>
