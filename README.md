@@ -1,8 +1,66 @@
-# Project: Integrator
+# Projeto  Integrador
 
 Hospedagem (Heroku): https://integrado.herokuapp.com/
 
-# Workflow
+
+
+# Baixando e rodando a aplicação
+
+
+
+```python
+###
+### No Terminal (git-bash, bash, etc)
+###
+
+### Clonar projeto 
+git clone https://github.com/JoseWRPereira/integrador.git
+
+### Acessar o projeto
+cd integrador
+
+### Instalar o ambiente virtual (virtualenv)
+virtualenv -p python3 env
+
+## Ativar o ambiente virtual 
+source env/bin/activate
+
+
+## Instalar requisitos 
+pip3 install -r requirements.txt
+
+
+## Executar o App
+flask run
+
+###
+### No navegador
+###
+
+## Acessar
+localhost:5000
+
+## Usar o app
+
+## Administrador
+Login: admin@email.com
+Senha: admin
+
+
+###
+### No terminal
+###
+
+## Saindo da execução do App
+<CTRL+C>
+
+## Sair do ambiente virtual
+deactivate
+```
+
+
+
+### Instalando do zero
 
 ```python
 ### Install virtual env
@@ -38,7 +96,7 @@ deactivate
 ```
 
 
-## Deploy using Heroku Git
+## Implementar (*Deploy*) utilizando Heroku Git
 
 ``` bash
 ## Login
@@ -54,12 +112,18 @@ $ git commit -am "comment..."
 $ git push heroku main
 ```
 
-## Validate
-
-Tool for check the html markup language: [W3C Markup Validation Service](https://validator.w3.org/)
 
 
-## Database 
+## Referências
 
-[POSTGRESQL](https://www.postgresqltutorial.com/postgresql-cheat-sheet/)
+* Front-end (HTML/CSS): [CodingLab](https://youtu.be/-qWySnuoaTM)
+
+* Ferramenta de validação do HTML: [W3C Markup Validation Service](https://validator.w3.org/)
+
+
+* Banco de dados: [POSTGRESQL](https://www.postgresqltutorial.com/postgresql-cheat-sheet/)
+
+* Framework web: [Flask doc](https://flask.palletsprojects.com/en/2.1.x/), [Curso de Flask com Julia Rizza](https://youtu.be/r40pC9kyoj0)
+
+* Arquitetura de Projetos Flask: [Code Show (Bruno Rocha)](https://youtu.be/-qWySnuoaTM)
 
