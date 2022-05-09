@@ -304,3 +304,8 @@ def dbreset():
     db.create_db()
     return redirect( url_for('index'))
 
+
+
+@app.route("/test")
+def test():
+    return render_template('test.html')

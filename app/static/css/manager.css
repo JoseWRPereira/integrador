@@ -20,11 +20,71 @@
 
 .home_content .manager_form table tr:hover
 {
-    background-color: var(--cor21)
+    background-color: var(--cor15);
 }
 
 .home_content .manager_form table tr td
 {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+
+
+input[type="checkbox"]
+{
+    position: relative;
+    width: 40px;
+    height: 20px;
+    appearance: none;
+    background: var(--cor19);
+    outline: none;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 128,128, 0.2);
+    transition: .5s;
+}
+input:checked[type="checkbox"]
+{
+    background: var(--cor31);
+}
+input[type="checkbox"]:before
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    background: var(--cor15);
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transition: .5s;
+}
+input:checked[type="checkbox"]:before
+{
+    left: 20px;
+}
+
+
+.svgedituser{
+    height: 24px;
+    width: 24px;
+    fill: var(--cor31);
+}
+.svgedituser:hover{
+    translate: 3px;
+    fill: var(--cor43);
+}
+
+.svgdeleteuser{
+    margin-left: 5px;
+    margin-right: 15px;
+    height: 24px;
+    width: 24px;
+    fill: var(--cor31);
+}
+.svgdeleteuser:hover{
+    translate: 3px;
+    fill: var(--cor43);
 }
