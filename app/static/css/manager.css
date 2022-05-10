@@ -1,5 +1,28 @@
 @import "/static/css/style.css";
 
+.home_content .manager_form_equip table
+{
+    position: absolute;
+    height: 100%;    
+    width: 40%;
+    left: 10px;
+    right: 10px;
+	border-collapse: collapse;
+	margin: auto;
+	border-top: 2px solid var(--cor3);
+	border-bottom: 2px solid var(--cor3);
+}
+
+
+
+
+
+
+
+
+
+
+
 .home_content .manager_form table
 {
     position: absolute;
@@ -10,23 +33,34 @@
 	border-collapse: collapse;
 	margin: auto;
 	border-top: 2px solid var(--cor3);
-	border-bottom: 2px solid var(--cor0);
+	border-bottom: 2px solid var(--cor3);
 }
 
+.home_content .manager_form_equip table tr,
 .home_content .manager_form table tr
 {
-    border-bottom: 1px solid var(--cor10);
+    border-bottom: 1px solid var(--cor21);
 }
 
+.home_content .manager_form_equip table tr:hover,
 .home_content .manager_form table tr:hover
 {
     background-color: var(--cor15);
 }
 
+.home_content .manager_form_equip table tr td
+{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
 .home_content .manager_form table tr td
 {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    text-indent: 20px;
+    
 }
 
 
@@ -68,23 +102,25 @@ input:checked[type="checkbox"]:before
 
 
 .svgedituser{
-    height: 24px;
-    width: 24px;
-    fill: var(--cor31);
-}
-.svgedituser:hover{
-    translate: 3px;
-    fill: var(--cor43);
-}
-
-.svgdeleteuser{
-    margin-left: 5px;
+    margin-left: 15px;
     margin-right: 15px;
     height: 24px;
     width: 24px;
-    fill: var(--cor31);
+    fill: var(--cor21);
+}
+.svgedituser:hover{
+    translate: 3px;
+    fill: var(--cor3);
+}
+
+.svgdeleteuser{
+    margin-left: 20px;
+    margin-right: 15px;
+    height: 24px;
+    width: 24px;
+    fill: var(--cor21);
 }
 .svgdeleteuser:hover{
     translate: 3px;
-    fill: var(--cor43);
+    fill: var(--cor3);
 }
