@@ -10,17 +10,17 @@
 	border-collapse: collapse;
 	margin: auto;
 	border-top: 2px solid var(--cor3);
-	border-bottom: 2px solid var(--cor1);
+	border-bottom: 2px solid var(--cor3);
 }
 
 .home_content .reservations table tr
 {
-    border-bottom: 1px solid var(--cor1);
+    border-bottom: 1px solid var(--cor21);
 }
 
 .home_content .reservations table tr:hover
 {
-    background-color: var(--cor21)
+    background-color: var(--cor15)
 }
 
 .home_content .reservations table tr td
@@ -81,3 +81,41 @@
     left: 500px;
 }
 
+
+
+.svgscheduling{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 18px;
+    width: 18px;
+    fill: var(--cor13);
+}
+.svgscheduling:hover{
+    translate: 3px;
+    fill: var(--cor12);
+}
+
+.svgschedulingreservar{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 24px;
+    width: 24px;
+    fill: var(--cor32);
+}
+.svgschedulingreservar:hover{
+    translate: 3px;
+    fill: var(--cor3);
+}
+
+
+.svgschedulingcancel{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 30px;
+    width: 30px;
+    fill: var(--cor41);
+}
+.svgschedulingcancel:hover{
+    translate: 3px;
+    fill: var(--cor44);
+}

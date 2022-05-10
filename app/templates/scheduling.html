@@ -12,7 +12,7 @@
     <br>
     <table>
         <tr>
-            <td>Carrinho</td>
+            <td>Equipamento</td>
             <td>Manhã</td>
             <td>Tarde</td>
             <td>Noite</td>
@@ -22,11 +22,26 @@
             <td> {{registro[0]}} </td>
             {% for i in range(1,4): %}
                 {% if registro[i] == session['id']: %}
-            <td><a href="/scheduling/cancel/{{ registro[0] }}/{{ i }}">Cancelar</a></td>
+            <td>
+                <!-- <a href="/scheduling/cancel/{{ registro[0] }}/{{ i }}">Cancelar</a> -->
+                <svg class="svgschedulingcancel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM577.9 223.1l47.03-47.03c9.375-9.375 9.375-24.56 0-33.94s-24.56-9.375-33.94 0L544 190.1l-47.03-47.03c-9.375-9.375-24.56-9.375-33.94 0s-9.375 24.56 0 33.94l47.03 47.03l-47.03 47.03c-9.375 9.375-9.375 24.56 0 33.94c9.373 9.373 24.56 9.381 33.94 0L544 257.9l47.03 47.03c9.373 9.373 24.56 9.381 33.94 0c9.375-9.375 9.375-24.56 0-33.94L577.9 223.1z" onclick='window.location.href="/scheduling/cancel/{{ registro[0] }}/{{ i }}";'/>
+                </svg>
+            </td>
                 {% elif registro[i] == 'm' or registro[i] == 't' or registro[i] == 'n': %}
-            <td><a href="/scheduling/reservar/{{ registro[0] }}/{{ i }}">Reservar</a></td>
+            <td>
+                <!-- <a href="/scheduling/reservar/{{ registro[0] }}/{{ i }}">Reservar</a> -->
+                <svg class="svgschedulingreservar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM328.1 304.1C338.3 295.6 338.3 280.4 328.1 271C319.6 261.7 304.4 261.7 295 271L200 366.1L152.1 319C143.6 309.7 128.4 309.7 119 319C109.7 328.4 109.7 343.6 119 352.1L183 416.1C192.4 426.3 207.6 426.3 216.1 416.1L328.1 304.1z" onclick='window.location.href="/scheduling/reservar/{{ registro[0] }}/{{ i }}";' />
+                </svg>
+            </td>
                 {% else:%}
-            <td> {{registro[i]}} </td>
+            <td> 
+                <!-- {{registro[i]}}  -->
+                <svg class="svgscheduling" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                </svg>
+            </td>
                 {% endif %}
             {% endfor %}
         </tr>

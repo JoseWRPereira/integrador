@@ -170,6 +170,7 @@ class Reserv():
 
     def scheduling_cancel(self, car, periodo):
         if 'username' in session:
+            db = DBConn()
             id = db.sql_fetch("SELECT id FROM reservations WHERE res_date='{}' AND car='{}';".format(session['reservation_date'], car) )
             if id is not None:
                 if   periodo== 1: #'m':
