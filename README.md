@@ -125,5 +125,5 @@ $ git push heroku main
 
 * Framework web: [Flask doc](https://flask.palletsprojects.com/en/2.1.x/), [Curso de Flask com Julia Rizza](https://youtu.be/r40pC9kyoj0)
 
-* Arquitetura de Projetos Flask: [Code Show (Bruno Rocha)](https://youtu.be/-qWySnuoaTM)
+* Arquitetura de Projetos Flask: [Henrique Guazzelli Mendes](https://youtu.be/EML_F6W_zrU), [Code Show (Bruno Rocha)](https://youtu.be/-qWySnuoaTM), [Real Python - Use a Flask Blueprint to Architect Your Applications](https://realpython.com/flask-blueprint/)
 
