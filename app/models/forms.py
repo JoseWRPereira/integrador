@@ -123,7 +123,7 @@ class FormCar(FlaskForm):
 
     def insert(self):
         db = DBConn()
-        db.sql_cmd("INSERT INTO cars (name) VALUES ('{}');".format( self.name.data) )
+        db.sql_cmd("INSERT INTO cars (name) VALUES ('{}');".format(self.name.data) )
 
     def delete(self, id):
         db = DBConn()
@@ -155,10 +155,13 @@ class Agenda():
                 for i in range(0,4):
                     if reg[0][i] != None:
                         sub.append(reg[0][i])
+                        if i == 0:
+                            sub.append(campo[1])
                     else:
                         sub.append(mask[i])
             else:
                 sub.append(campo[0])
+                sub.append(campo[1])
                 sub.append(mask[1])
                 sub.append(mask[2])
                 sub.append(mask[3])

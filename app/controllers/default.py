@@ -10,6 +10,7 @@ from app.models.db import DBConn
 from datetime import date, timedelta
 
 
+
 ####################################### 
 ####################################### Dashboard
 ####################################### 
@@ -173,11 +174,11 @@ class Reserv():
             db = DBConn()
             id = db.sql_fetch("SELECT id FROM reservations WHERE res_date='{}' AND car='{}';".format(session['reservation_date'], car) )
             if id is not None:
-                if   periodo== 1: #'m':
+                if   periodo == 2: #'m':
                     db.sql_cmd("UPDATE reservations SET user_m=NULL WHERE id='{}';".format(id[0][0]) )
-                elif periodo == 2: #'t':
+                elif periodo == 3: #'t':
                     db.sql_cmd("UPDATE reservations SET user_t=NULL WHERE id='{}';".format(id[0][0]) )
-                elif periodo == 3: #'n':
+                elif periodo == 4: #'n':
                     db.sql_cmd("UPDATE reservations SET user_n=NULL WHERE id='{}';".format(id[0][0]) )
         return redirect(url_for('scheduling'))
 
@@ -186,18 +187,18 @@ class Reserv():
             db = DBConn()
             id = db.sql_fetch("SELECT id FROM reservations WHERE res_date='{}' AND car='{}';".format(session['reservation_date'], car) )
             if id:
-                if periodo == 1: # 'm'
+                if periodo == 2: # 'm'
                     db.sql_cmd("UPDATE reservations SET user_m='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
-                elif periodo == 2: #'t':
+                elif periodo == 3: #'t':
                     db.sql_cmd("UPDATE reservations SET user_t='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
-                elif periodo == 3: #'n':
+                elif periodo == 4: #'n':
                     db.sql_cmd("UPDATE reservations SET user_n='{}' WHERE id='{}';".format(session['id'], id[0][0]) )
             else:
-                if   periodo == 1: #'m':
+                if   periodo == 2: #'m':
                     db.sql_cmd("INSERT INTO reservations (res_date, car, user_m) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
-                elif periodo ==  2: #'t':
+                elif periodo ==  3: #'t':
                     db.sql_cmd("INSERT INTO reservations (res_date, car, user_t) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
-                elif periodo == 3: # 'n':
+                elif periodo == 4: # 'n':
                     db.sql_cmd("INSERT INTO reservations (res_date, car, user_n) VALUES ('{}','{}','{}');".format(session['reservation_date'], car, session['id']) )
         return redirect(url_for('scheduling'))
 
