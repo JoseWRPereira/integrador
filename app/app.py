@@ -7,6 +7,7 @@ from app.api.v1 import api_bp
 
 app = Flask(__name__)
 app.config.from_object('config')
+
 app.register_blueprint(database_bp)
 app.register_blueprint(users_bp)
 app.register_blueprint(equipment_bp)
