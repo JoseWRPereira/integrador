@@ -14,6 +14,8 @@ app.register_blueprint(equipment_bp)
 app.register_blueprint(agenda_bp)
 app.register_blueprint(api_bp)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
     return render_template('index.html')
+
+

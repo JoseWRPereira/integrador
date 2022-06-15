@@ -1,4 +1,4 @@
-FLASK_APP = 'app/app.py'
+FLASK_APP = 'app.py'
 FLASK_ENV = 'development'
 DEBUG = True
 SECRET_KEY = 'integracao'
