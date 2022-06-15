@@ -19,7 +19,7 @@
     {{ form_car.csrf_token }}
     {{ form_car.name( placeholder="Nome do equipamento", maxlength="20" ) }}
 
-    {% if 'car_edit_id' in session: %}
+    {% if 'equipment_edit_id' in session: %}
     <input type="submit" value="Alterar" name="carAlterar_btn">
     {% else: %}
     <input type="submit" value="Criar" name="carCriar_btn">

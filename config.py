@@ -1,8 +1,6 @@
-
-FLASK_APP = 'app'
+FLASK_APP = 'app/app.py'
 FLASK_ENV = 'development'
 DEBUG = True
-
 SECRET_KEY = 'integracao'
 
 # # Parâmetros de conexão com banco de dados Postgres no Heroku
