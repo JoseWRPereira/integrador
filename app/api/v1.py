@@ -13,8 +13,8 @@ def api_help():
 @api_bp.route('/api/users')
 def api_v1_users():
     db = DBConn()
-    users = db.sql_fetch("SELECT * from users;")
-    header = ["id", "name", "email", "password", "nif", "admin"]
+    users = db.sql_fetch("SELECT id,name,email,nif,admin from users;")
+    header = ["id", "name", "email", "nif", "admin"]
 
     dicio = []
     for user in users:
@@ -23,3 +23,34 @@ def api_v1_users():
     response = make_response( jsonify(dicio), 200 )
     response.headers["Content-Type"] = "application/json"
     return response
+
+
+@api_bp.route('/api/equipment')
+def api_v1_equipment():
+    db = DBConn()
+    cars = db.sql_fetch("SELECT id,name from cars;")
+    header = ["id", "name"]
+
+    dicio = []
+    for car in cars:
+        dicio.append( dict( zip(header, car)) )
+
+    response = make_response( jsonify(dicio), 200 )
+    response.headers["Content-Type"] = "application/json"
+    return response
+
+
+@api_bp.route('/api/agenda')
+def api_v1_agenda():
+    db = DBConn()
+    agenda = db.sql_fetch("SELECT id, res_date, car, user_m, user_t, user_n from reservations;")
+    header = ["id", "res_date", "car", "user_m", "user_t", "user_n"]
+
+    dicio = []
+    for reserv in agenda:
+        dicio.append( dict( zip(header, reserv)) )
+
+    response = make_response( jsonify(dicio), 200 )
+    response.headers["Content-Type"] = "application/json"
+    return response
+

@@ -3,6 +3,26 @@
 Hospedagem (Heroku): https://integrado.herokuapp.com/
 
 
+# Árvore do projeto
+```
+---\integrador
+    '---\app
+    '    '---\api
+    '    '---\db
+    '    '---\equipment
+    '    '---\scheduling
+    '    '---\static
+    '    '---\templates
+    '    '---\users
+    '    '---app.py
+    '
+    '---config.py
+    '---Procfile
+    '---README.md
+    '---requirements.txt
+    '---wsgi.py
+```
+
 
 # Baixando e rodando a aplicação
 
